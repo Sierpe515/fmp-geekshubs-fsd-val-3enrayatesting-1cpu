@@ -157,50 +157,48 @@ const robarCpu = () => {
 }
 
 tablero.map(
-    (celda) => {
-        celda.addEventListener('click', ()=> {
+    (celda) => {   
 
-            if (juegoTerminado) return;
+        if (juegoTerminado) return;
 
-            if((celda.innerHTML === "") && (fichaP1 > 0)){
-                
-                celda.innerHTML = "X";
-                
-                fichaP1-- ;
+        while((celda.innerHTML === "") && (fichaP1 > 0) && fichacpu === false){
 
-                miTablero[celda.id] = "X";
+            robarCpu();
 
-                fichacpu = false;
-
-                robarCpu();
-
-                // If (evitarGanador = true) else (jugadaCpu)?
-                intentarGanar ();
-                
-                evitarGanador ();
-                
-                jugadaCpu();
+            intentarGanar ();
+            
+            evitarGanador ();
+            
+            jugadaCpu();
 
 
-                fichaBorrada = false
+            celda.addEventListener('click', ()=> {
 
-                contadorTurnosP1++
-                console.log(contadorTurnosP1)
+                if((celda.innerHTML === "") && (fichaP1 > 0)){
+                    
+                    celda.innerHTML = "X";
+                    
+                    fichaP1-- ;
 
-                comprueboGanador();
+                    miTablero[celda.id] = "X";
 
-                // turno = !turno;
-            } else if ((celda.innerHTML !=="") && (fichaP1 === 0)){
-                    celda.innerHTML = "";
-                    fichaBorrada = true;
-                    fichaP1++;
+                    fichaBorrada = false
 
-                miTablero[celda.id] = "";
-                // miTablero[celda.id] = null;
-                // marca como null en el console log, pero no inhabilita casilla
-                
+                    contadorTurnosP1++
+                    console.log(contadorTurnosP1)
 
-            }
-        })
+                    comprueboGanador();
+
+                    fichacpu = false;
+
+                } else if ((celda.innerHTML !=="") && (fichaP1 === 0)){
+                        celda.innerHTML = "";
+                        fichaBorrada = true;
+                        fichaP1++;
+
+                    miTablero[celda.id] = "";
+                }
+            })
+        }
     }
 )
