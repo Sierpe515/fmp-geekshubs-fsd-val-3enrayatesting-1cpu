@@ -161,8 +161,8 @@ tablero.map(
 
         if (juegoTerminado) return;
 
-        while((celda.innerHTML === "") && (fichaP1 > 0) && fichacpu === false){
-
+        // while((celda.innerHTML === "") && (fichaP1 > 0) && fichacpu === false){
+            console.log('hola');
             robarCpu();
 
             intentarGanar ();
@@ -170,35 +170,53 @@ tablero.map(
             evitarGanador ();
             
             jugadaCpu();
+            console.log('adios');
 
+        // }
 
-            celda.addEventListener('click', ()=> {
+        celda.addEventListener('click', ()=> {
+            console.log('1');
+            if((celda.innerHTML === "") && (fichaP1 > 0)){
+            console.log('2');
+                
+                celda.innerHTML = "X";
+                
+                fichaP1-- ;
 
-                if((celda.innerHTML === "") && (fichaP1 > 0)){
-                    
-                    celda.innerHTML = "X";
-                    
-                    fichaP1-- ;
+                miTablero[celda.id] = "X";
 
-                    miTablero[celda.id] = "X";
+                fichaBorrada = false
 
-                    fichaBorrada = false
+                contadorTurnosP1++
+                console.log(contadorTurnosP1)
 
-                    contadorTurnosP1++
-                    console.log(contadorTurnosP1)
+                comprueboGanador();
 
-                    comprueboGanador();
+                fichacpu = false;
 
-                    fichacpu = false;
+                // while((celda.innerHTML === "") && (fichaP1 > 0) && fichacpu === false){
+            console.log('hola');
+            robarCpu();
 
-                } else if ((celda.innerHTML !=="") && (fichaP1 === 0)){
-                        celda.innerHTML = "";
-                        fichaBorrada = true;
-                        fichaP1++;
+            intentarGanar ();
+            
+            evitarGanador ();
+            
+            jugadaCpu();
+            console.log('adios');
 
-                    miTablero[celda.id] = "";
-                }
-            })
-        }
+        // }
+
+            } else if ((celda.innerHTML !=="") && (fichaP1 === 0)){
+            console.log('3');
+
+                    celda.innerHTML = "";
+                    fichaBorrada = true;
+                    fichaP1++;
+
+                miTablero[celda.id] = "";
+            }
+        })
+
     }
 )
