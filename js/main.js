@@ -143,7 +143,7 @@ const jugadaCpu = () => {
 }
 
 const robarCpu = () => {
-    if (contadorTurnosP1 > 2){
+    if (contadorTurnosP1 >= 3){
         console.log ("Debería de quitar una ficha")
         let aleatorio = tablero[Math.floor(Math.random() * tablero.length)];
         while (aleatorio.innerHTML !== "O"){
@@ -163,11 +163,11 @@ tablero.map(
 
         // while((celda.innerHTML === "") && (fichaP1 > 0) && fichacpu === false){
             console.log('hola');
-            robarCpu();
+            // robarCpu();
 
-            intentarGanar ();
+            // intentarGanar ();
             
-            evitarGanador ();
+            // evitarGanador ();
             
             jugadaCpu();
             console.log('adios');
